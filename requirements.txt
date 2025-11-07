@@ -1,0 +1,8 @@
+streamlit
+st-supabase-connection
+groq
+twilio
+ics
+PyMuPDF
+
+

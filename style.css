@@ -1,0 +1,142 @@
+/* Import a custom font (optional) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* --- Main App Colors & Font --- */
+body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* This targets the main app background */
+[data-testid="stAppViewContainer"] {
+    background-color: #111827; /* Dark navy */
+    color: #ffffff; /* Off-white text */
+}
+
+/* --- Sidebar Colors --- */
+[data-testid="stSidebar"] {
+    background-color: #1F2937; /* Slightly lighter navy */
+    border-right: 2px solid #374151;
+}
+[data-testid="stSidebar"] h1, 
+[data-testid="stSidebar"] h2, 
+[data-testid="stSidebar"] h3 {
+    color: #FFFFFF;
+}
+
+/* --- Main Content Colors --- */
+.stMarkdown {
+    color: #cfc5c5; /* Light gray text */
+}
+
+h1, h2, h3 {
+    color: #FFFFFF; /* White headers */
+}
+
+/* --- Reskin Streamlit Components --- */
+
+/* Buttons */
+[data-testid="stButton"] button {
+    background-color: #3B82F6; /* Blue */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+[data-testid="stButton"] button:hover {
+    background-color: #2563EB;
+}
+[data-testid="stButton"] button:focus {
+    box-shadow: 0 0 0 3px #3B82F660;
+}
+
+/* Text Inputs */
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea {
+    background-color: #374151; /* Gray */
+    color: #ffffff;
+    border: 1px solid #4B5563;
+    border-radius: 8px;
+}
+[data-testid="stTextInput"] input:focus,
+[data-testid="stTextArea"] textarea:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px #3B82F660;
+}
+
+/* --- Hide Streamlit Branding --- */
+footer {
+    visibility: hidden;
+}
+[data-testid="stDecoration"] {
+    visibility: hidden;
+}
+
+
+/* --- Custom Layout Tools --- */
+
+/* A Flexbox container to align items horizontally */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* A custom "card" for showing data */
+.card {
+    background-color: #1F2937; /* Dark gray */
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    flex: 1; /* Makes cards in a flex-container grow equally */
+    text-align: center;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #3B82F6; /* Blue accent */
+}
+
+/* A horizontal rule with style */
+.styled-divider {
+    border: 0;
+    border-top: 2px solid #374151;
+    margin: 2rem 0;
+}
+
+
+/* --- Sidebar Menu Enhancements --- */
+
+/* Style for the vertical option-menu in the sidebar */
+[data-testid="stSidebar"] .option-menu-container .nav-item {
+    margin-bottom: 5px; /* Add space between session items */
+}
+
+[data-testid="stSidebar"] .option-menu-container .nav-link {
+    border-radius: 8px; /* Rounded corners for each item */
+    color: #ffffff; /* Light gray text */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+[data-testid="stSidebar"] .option-menu-container .nav-link:hover {
+    background-color: #374151; /* Dark gray hover */
+    color: #FFFFFF;
+}
+
+/* Active/Selected session item */
+[data-testid="stSidebar"] .option-menu-container .nav-link.active {
+    background-color: #3B82F6; /* Blue */
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* Icons */
+[data-testid="stSidebar"] .option-menu-container .nav-link svg {
+    fill: #ffffff;
+}
+[data-testid="stSidebar"] .option-menu-container .nav-link.active svg {
+    fill: #FFFFFF;
+}
