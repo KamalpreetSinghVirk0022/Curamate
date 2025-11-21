@@ -2,6 +2,9 @@ import streamlit as st
 from datetime import datetime, timedelta
 from config.app_config import SESSION_TIMEOUT_MINUTES
 
+from services.ai_service import init_analysis_state
+
+
 class SessionManager:
     @staticmethod
     def init_session():
@@ -14,6 +17,7 @@ class SessionManager:
         if 'auth_service' not in st.session_state:
             from auth.auth_service import AuthService
             st.session_state.auth_service = AuthService()
+        init_analysis_state()
         
         # Check session timeout
         if 'last_activity' in st.session_state:

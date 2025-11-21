@@ -1,5 +1,3 @@
-# config/medication_prompts.py
-
 import datetime
 
 def get_medication_prompt(user_text: str) -> str:
@@ -11,17 +9,17 @@ def get_medication_prompt(user_text: str) -> str:
 
     Current Date: {today}
 
-    ### Rules for Interpretation:
-    1. **Identify Medications:** Extract every distinct medication or nickname (e.g., "blue pill").
-    2. **Infer Standard Times (Crucial):** Map layman routines to 24-hour times:
+    ### Interpretation Rules:
+    - **Identify Medications:** Extract every distinct medication or nickname (e.g., "blue pill").
+    - **Infer Standard Times (Crucial):** Map layman routines to 24-hour times:
        - "Morning"/"Breakfast" -> ["08:00"]
        - "Lunch"/"Afternoon" -> ["13:00"]
        - "Dinner"/"Evening" -> ["20:00"]
        - "Bedtime"/"Night" -> ["22:00"]
        - "Twice a day" -> ["09:00", "21:00"]
        - "Three times a day" -> ["09:00", "14:00", "21:00"]
-    3. **Handle Durations:** Calculate 'end_date' (YYYY-MM-DD) if a duration is given (e.g., "for 7 days"). Otherwise, set to null.
-    4. **CRITICAL OUTPUT RULE:** Your output must start with '[' and end with ']'. No preamble.
+    - **Durations:** Calculate 'end_date' (YYYY-MM-DD) if a duration is given (e.g., "for 7 days"). Otherwise, set to null.
+    - **CRITICAL OUTPUT RULE:** Your output must start with '[' and end with ']'. No preamble.
 
     ### ONE-SHOT EXAMPLE (Follow this format exactly):
     Input: "Take 500mg Crocin twice daily for 3 days, and Aspirin every night."

@@ -4,5 +4,6 @@ groq
 twilio
 ics
 PyMuPDF
-
+pdfplumber
+streamlit_option_menu
 
