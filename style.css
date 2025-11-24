@@ -1,142 +1,106 @@
-/* Import a custom font (optional) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+/* Import a modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* --- Main App Colors & Font --- */
+/* --- Global Reset & Variables --- */
+:root {
+    --bg-color: #121212;        /* Deep Dark Grey (Material Standard) */
+    --card-bg: #1E1E1E;         /* Slightly lighter for cards/sidebar */
+    --text-primary: #E0E0E0;    /* High-contrast Off-White */
+    --text-secondary: #B0B0B0;  /* Muted Grey for less important text */
+    --accent-color: #3B82F6;    /* Vibrant Blue */
+    --border-color: #333333;    /* Subtle border */
+}
+
 body {
     font-family: 'Inter', sans-serif !important;
+    color: var(--text-primary) !important;
 }
 
-/* This targets the main app background */
+/* --- Main App Background --- */
 [data-testid="stAppViewContainer"] {
-    background-color: #111827; /* Dark navy */
-    color: #ffffff; /* Off-white text */
+    background-color: var(--bg-color);
+    color: var(--text-primary);
 }
 
-/* --- Sidebar Colors --- */
+/* --- Sidebar Background --- */
 [data-testid="stSidebar"] {
-    background-color: #1F2937; /* Slightly lighter navy */
-    border-right: 2px solid #374151;
-}
-[data-testid="stSidebar"] h1, 
-[data-testid="stSidebar"] h2, 
-[data-testid="stSidebar"] h3 {
-    color: #FFFFFF;
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-color);
 }
 
-/* --- Main Content Colors --- */
-.stMarkdown {
-    color: #cfc5c5; /* Light gray text */
+/* --- Typography (Force text colors to prevent merging) --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF !important; /* Pure white for headers */
+    font-weight: 600;
 }
 
-h1, h2, h3 {
-    color: #FFFFFF; /* White headers */
+p, li, span, label, .stMarkdown {
+    color: var(--text-primary) !important;
 }
 
-/* --- Reskin Streamlit Components --- */
-
-/* Buttons */
-[data-testid="stButton"] button {
-    background-color: #3B82F6; /* Blue */
-    color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-[data-testid="stButton"] button:hover {
-    background-color: #2563EB;
-}
-[data-testid="stButton"] button:focus {
-    box-shadow: 0 0 0 3px #3B82F660;
+/* Small text/captions */
+.stCaption, .small-font {
+    color: var(--text-secondary) !important;
 }
 
-/* Text Inputs */
+/* --- Inputs & Text Areas (Crucial for visibility) --- */
+/* This fixes the "text merging" inside input boxes */
 [data-testid="stTextInput"] input,
-[data-testid="stTextArea"] textarea {
-    background-color: #374151; /* Gray */
-    color: #ffffff;
-    border: 1px solid #4B5563;
+[data-testid="stTextArea"] textarea,
+[data-testid="stNumberInput"] input,
+[data-testid="stSelectbox"] > div > div {
+    background-color: #2D2D2D !important; /* Distinct from main background */
+    color: #FFFFFF !important;             /* White text inside inputs */
+    border: 1px solid var(--border-color);
     border-radius: 8px;
 }
+
+/* Focus state for inputs */
 [data-testid="stTextInput"] input:focus,
 [data-testid="stTextArea"] textarea:focus {
-    border-color: #3B82F6;
-    box-shadow: 0 0 0 3px #3B82F660;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 1px var(--accent-color);
 }
 
-/* --- Hide Streamlit Branding --- */
-footer {
-    visibility: hidden;
-}
-[data-testid="stDecoration"] {
-    visibility: hidden;
-}
-
-
-/* --- Custom Layout Tools --- */
-
-/* A Flexbox container to align items horizontally */
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+/* --- Buttons --- */
+[data-testid="stButton"] button {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
-/* A custom "card" for showing data */
+[data-testid="stButton"] button:hover {
+    background-color: #2563EB; /* Darker blue on hover */
+    transform: translateY(-1px);
+}
+
+/* --- Custom Card Component --- */
 .card {
-    background-color: #1F2937; /* Dark gray */
+    background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: 12px;
-    border: 1px solid #374151;
-    flex: 1; /* Makes cards in a flex-container grow equally */
-    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
 }
 
 .card h3 {
     margin-top: 0;
-    color: #3B82F6; /* Blue accent */
+    color: var(--accent-color) !important;
 }
 
-/* A horizontal rule with style */
-.styled-divider {
-    border: 0;
-    border-top: 2px solid #374151;
-    margin: 2rem 0;
+/* --- Expander (Accordion) Styling --- */
+.streamlit-expanderHeader {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
 
-
-/* --- Sidebar Menu Enhancements --- */
-
-/* Style for the vertical option-menu in the sidebar */
-[data-testid="stSidebar"] .option-menu-container .nav-item {
-    margin-bottom: 5px; /* Add space between session items */
-}
-
-[data-testid="stSidebar"] .option-menu-container .nav-link {
-    border-radius: 8px; /* Rounded corners for each item */
-    color: #ffffff; /* Light gray text */
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Hover effect */
-[data-testid="stSidebar"] .option-menu-container .nav-link:hover {
-    background-color: #374151; /* Dark gray hover */
-    color: #FFFFFF;
-}
-
-/* Active/Selected session item */
-[data-testid="stSidebar"] .option-menu-container .nav-link.active {
-    background-color: #3B82F6; /* Blue */
-    color: #FFFFFF;
-    font-weight: 500;
-}
-
-/* Icons */
-[data-testid="stSidebar"] .option-menu-container .nav-link svg {
-    fill: #ffffff;
-}
-[data-testid="stSidebar"] .option-menu-container .nav-link.active svg {
-    fill: #FFFFFF;
-}
+/* --- Hide Streamlit Branding --- */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
